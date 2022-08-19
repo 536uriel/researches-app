@@ -39,7 +39,7 @@ quill.setContents(posts[wrapper.id].body)
         <div>
 
         <div> {post.title} </div>
-        <div> {post.title} </div>
+        <div> {post.desc} </div>
         <div id={index}  ref={research} ></div>
         </div>
 

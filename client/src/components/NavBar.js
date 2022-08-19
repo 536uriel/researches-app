@@ -9,6 +9,9 @@ const NavBar = () => {
         <Link to="/post">post page</Link>
         <br />
         <Link to="/posts">posts page</Link>
+        <br />
+        <Link to="/my-posts">my posts page</Link>
+
 
     </div>
   )
