@@ -8,9 +8,11 @@ const MyPosts = () => {
 
     const [posts, setPosts] = useState(null)
     const [edit, setEdit] = useState([false])
+    const [refresh,setRefresh] = useState(null)
 
 
     useEffect(() => {
+        console.log("myposts rendered")
         fetch("http://localhost:1000/my-researches")
             .then(res => res.json()).then((data) => {
                 console.log(data)
@@ -22,20 +24,18 @@ const MyPosts = () => {
                 
                 setEdit([...arr])
             }).catch(err => console.log(err))
-    }, [])
+    }, [refresh])
 
     const research = useCallback((wrapper) => {
         if (!wrapper) return;
 
         const quill = new Quill(wrapper, {
-            debug: 'info',
             modules: {
                 toolbar: ''
             },
             readOnly: true,
             theme: 'snow'
         })
-        console.log(wrapper.id)
         quill.setContents(posts[wrapper.id].body)
 
     })
@@ -56,10 +56,10 @@ const MyPosts = () => {
                                         <button onClick={()=>{
                                             edit[index] = true;
                                             setEdit([...edit])
-                                            }}>edit post</button>
+                                            }}>edit post</button> 
                                     </div>
-                                ) : (<EditPost posts={posts} setPosts={setPosts} post={post}
-                                     edit={edit} setEdit={setEdit} index={index} />)
+                                ) : (<EditPost setRefresh={(val)=>setRefresh(val)} post={post} edit={edit} 
+                                    setEdit={setEdit} index={index} />)
                             }
 
                         </div>

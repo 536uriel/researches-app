@@ -35,7 +35,6 @@ const EditPost = (props) => {
         button.addEventListener('click',(e)=>{
 
            const content = quill.getContents()
-           console.log(props.post._id)
 
             fetch('http://localhost:1000/research', {
                 method: "POST",
@@ -49,14 +48,9 @@ const EditPost = (props) => {
             }).then(res => res.json()).then((data) => {
                 alert(data.res)
                 //todo: render the parent
-                //this cousing an error
-                // const posts = props.posts[0]
-                // posts[props.index].title = title;
-                // posts[props.index].desc = desc;
-                // posts[props.index].body = content;
-
-                // console.log(posts)
-                // props.setPosts([...posts])
+                props.setRefresh({
+                    title: title.current.value, desc: desc.current.value, body:content
+                })
 
             }).catch((err) => {
                 console.log(err)

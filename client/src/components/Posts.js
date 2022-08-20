@@ -19,7 +19,6 @@ const research = useCallback((wrapper)=>{
   if(!wrapper) return;
 
   const quill = new Quill(wrapper,{
-    debug: 'info',
     modules: {
         toolbar: ''
     },
