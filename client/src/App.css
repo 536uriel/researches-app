@@ -1,0 +1,45 @@
+:root{
+    --dominate:#845EC2;
+    --complementary:#D0E6F0;
+    --accent:#1C819E;
+}
+
+
+::before ::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0
+}
+
+.App{
+    height: 100vh;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgb(182, 172, 204);
+    margin-bottom: 1%;
+    background: var(--complementary);
+    min-height: 4%;
+}
+
+.nav a{
+    text-decoration: none;
+    color: var(--accent);
+    height: max-content;
+}
+
+
+.home-container{
+    background: var(--dominate);
+    min-height: 95%;
+}
+
+.posts-container{
+    background: var(--dominate);
+    min-height: 95%;
+}
