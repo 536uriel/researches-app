@@ -1,7 +1,7 @@
 :root{
-    --dominate:#845EC2;
-    --complementary:#D0E6F0;
-    --accent:#1C819E;
+    --dominate:#f5f5f5;
+    --complementary:#474554;
+    --accent:#ACA7CB;
 }
 
 
@@ -46,4 +46,21 @@ body{
 
 .posts-ql-wrapper .ql-container .ql-editor{
     max-height:4em;
+}
+
+.read-post-container h1{
+    text-align: center;
+    color:var(--accent)
+}
+
+.read-post-content .ql-container.ql-snow{
+    width: 70%;
+    margin: 0 auto;
+    border-style: none;
+    background-color: var(--complementary);
+    color: var(--dominate);
+}
+
+.read-post-container button{
+    
 }

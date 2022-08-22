@@ -31,9 +31,9 @@ const ReadPost = (props) => {
     
 
   return (
-    <div>
-        <div>{props.post.title}</div>
-        <div ref={research}></div>
+    <div className='read-post-container'>
+        <h1>{props.post.title}</h1>
+        <div className='read-post-content' ref={research}></div>
         <button onClick={()=>{
           let arr = props.viewIntro
           arr[props.index] = true
