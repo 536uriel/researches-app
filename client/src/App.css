@@ -43,3 +43,7 @@ body{
     background: var(--dominate);
     min-height: 95%;
 }
+
+.posts-ql-wrapper .ql-container .ql-editor{
+    max-height:4em;
+}

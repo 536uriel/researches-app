@@ -1,17 +1,27 @@
 import { useEffect, useCallback, useState } from 'react'
 import Quill from 'quill'
+import ReadPost from './ReadPost'
 
 
 
 const Posts = () => {
 
   const [posts, setPosts] = useState(null)
+  const [viewIntro, setViewIntro] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:1000/researches")
       .then(res => res.json()).then((data) => {
         console.log(data)
         setPosts(data)
+
+        let arr = []
+        data.forEach(element => {
+          arr.push(true)
+        });
+
+        setViewIntro([...arr])
+
       }).catch(err => console.log(err))
   }, [])
 
@@ -39,14 +49,44 @@ const Posts = () => {
       {
         posts ? posts.map((post, index) => {
           return (
-            <div className='post-container'>
+            <div>
 
-              <div className='title'> {post.title} </div>
-              <div className='desc'> {post.desc} </div>
-              <div className='quill-wrpper' id={index} ref={research} ></div>
+              {
+
+                viewIntro[index] ? (
+                  viewIntro.includes(false) ? ""
+                 : (
+
+                  <div className='post-container'>
+
+                    <div className='title'> {post.title} </div>
+                    <div className='desc'> {post.desc} </div>
+                    <div className='posts-ql-wrapper' id={index} ref={research} ></div>
+                    <button onClick={() => {
+                      let arr = viewIntro
+                     
+                      arr[index] = false
+                      setViewIntro([...arr])
+                    }}>read</button> 
+                  </div>
+
+                ) 
+                
+                ): (
+                  <div>
+                    <ReadPost index={index} viewIntro={viewIntro} setViewIntro={setViewIntro} 
+                    ql={research} post={posts[index]} />
+                  </div>
+
+
+                )
+
+
+              }
+
             </div>
-
           )
+
         }) : ""
 
       }
