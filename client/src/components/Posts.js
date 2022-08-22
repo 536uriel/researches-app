@@ -75,7 +75,7 @@ const Posts = () => {
                 ): (
                   <div>
                     <ReadPost index={index} viewIntro={viewIntro} setViewIntro={setViewIntro} 
-                    ql={research} post={posts[index]} />
+                     post={posts[index]} />
                   </div>
 
 
