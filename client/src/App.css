@@ -54,13 +54,28 @@ body{
 }
 
 .read-post-content .ql-container.ql-snow{
-    width: 70%;
-    margin: 0 auto;
+   
     border-style: none;
     background-color: var(--complementary);
-    color: var(--dominate);
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.read-post-container > div{
+    width: 70%;
+    margin: 0 auto;
 }
 
 .read-post-container button{
-    
+    font-size: 20px;
+    margin-top: 1em;
+    background-color: var(--accent);
+    color: var(--dominate);
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.read-post-container button:hover{
+    background-color: var(--complementary);
 }
