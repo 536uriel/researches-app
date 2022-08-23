@@ -8,6 +8,27 @@ const Posts = () => {
 
   const [posts, setPosts] = useState(null)
   const [viewIntro, setViewIntro] = useState([])
+  const [searchParam, setSearchParam] = useState(" ")
+
+
+  function filterItems(items) {
+    return items.filter((item) => {
+      return searchParam.split(" ").some((newItem) => {
+        if (searchParam.length > 0) {
+          return (
+            item.title
+              .toLowerCase()
+              .includes(newItem.toLocaleLowerCase())
+          );
+        }
+
+        return true
+
+      });
+    });
+
+
+  }
 
   useEffect(() => {
     fetch("http://localhost:1000/researches")
@@ -42,12 +63,14 @@ const Posts = () => {
     })
     quill.setContents(posts[wrapper.id].body)
 
+
   })
 
   return (
     <div className='posts-container'>
+      <input type="text" placeholder='search a post' onChange={(e) => setSearchParam(e.target.value)} />
       {
-        posts ? posts.map((post, index) => {
+        posts ? filterItems(posts).map((post, index) => {
           return (
             <div>
 
@@ -55,27 +78,27 @@ const Posts = () => {
 
                 viewIntro[index] ? (
                   viewIntro.includes(false) ? ""
-                 : (
+                    : (
 
-                  <div className='post-container'>
+                      <div className='post-container'>
 
-                    <div className='title'> {post.title} </div>
-                    <div className='desc'> {post.desc} </div>
-                    <div className='posts-ql-wrapper' id={index} ref={research} ></div>
-                    <button onClick={() => {
-                      let arr = viewIntro
-                     
-                      arr[index] = false
-                      setViewIntro([...arr])
-                    }}>read</button> 
-                  </div>
+                        <div className='title'> {post.title} </div>
+                        <div className='desc'> {post.desc} </div>
+                        <div className='posts-ql-wrapper' id={index} ref={research} ></div>
+                        <button onClick={() => {
+                          let arr = viewIntro
 
-                ) 
-                
-                ): (
+                          arr[index] = false
+                          setViewIntro([...arr])
+                        }}>read</button>
+                      </div>
+
+                    )
+
+                ) : (
                   <div>
-                    <ReadPost index={index} viewIntro={viewIntro} setViewIntro={setViewIntro} 
-                     post={posts[index]} />
+                    <ReadPost index={index} viewIntro={viewIntro} setViewIntro={setViewIntro}
+                      post={posts[index]} />
                   </div>
 
 
