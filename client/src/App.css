@@ -39,6 +39,10 @@ body{
     min-height: 95%;
 }
 
+.Post-container{
+    position: relative;
+}
+
 .posts-container{
     background: var(--dominate);
     min-height: 95%;
@@ -78,4 +82,15 @@ body{
 
 .read-post-container button:hover{
     background-color: var(--complementary);
+}
+
+.tagsDropDownDiv{
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.tagsDropDown ul{
+    list-style: none;
+    background: var(--accent);
 }

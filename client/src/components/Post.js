@@ -1,48 +1,84 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Quill from 'quill'
-
 
 const Post = () => {
 
     const title = useRef()
     const desc = useRef()
+    const tagsDropDownRef = useRef()
+    const [dropDown, setDropDown] = useState(null)
+    const [tags, setTags] = useState(['js', 'react', 'nodejs'])
+    const [selectedInput, setSelectedInput] = useState(null)
 
-    /*
-** Returns the caret (cursor) position of the specified text field (oField).
-** Return value range is 0-oField.value.length.
-*/
-// function doGetCaretPosition (oField) {
 
-//     // Initialize
-//     var iCaretPos = 0;
-  
-//     // IE Support
-//     if (document.selection) {
-  
-//       // Set focus on the element
-//       oField.focus();
-  
-//       // To get cursor position, get empty selection range
-//       var oSel = document.selection.createRange();
-  
-//       // Move selection start to 0 position
-//       oSel.moveStart('character', -oField.value.length);
-  
-//       // The caret position is selection length
-//       iCaretPos = oSel.text.length;
-//     }
-  
-//     // Firefox support
-//     else if (oField.selectionStart || oField.selectionStart == '0')
-//       iCaretPos = oField.selectionDirection=='backward' ? oField.selectionStart : oField.selectionEnd;
-  
-//     // Return results
-//     return iCaretPos;
-//   }
-  
+    function getOffset(el) {
+        const rect = el.getBoundingClientRect();
+        return {
+            left: rect.left + window.scrollX,
+            top: rect.top + window.scrollY
+        };
+    }
 
-    function tags(e){
-        console.log(e)
+    const getCursorPosition = function (input) {
+        if (!input) return; // No (input) element found
+        if ('selectionStart' in input) {
+            // Standard-compliant browsers
+            return input.selectionStart;
+        } else if (document.selection) {
+            // IE
+            input.focus();
+            var sel = document.selection.createRange();
+            var selLen = document.selection.createRange().text.length;
+            sel.moveStart('character', -input.value.length);
+            return sel.text.length - selLen;
+        }
+    }
+
+
+    function appendTags(e) {
+        const input = e.target
+        tagsDropDownRef.current.style.left = getOffset(input).left + "px"
+        tagsDropDownRef.current.style.top = getOffset(input).top + "px"
+        setDropDown((<TagsDropDown tagsDropDownRef={tagsDropDownRef} setSelectedInput={setSelectedInput}
+            selectedInput={selectedInput} tags={tags} />))
+
+
+        if (input.value[getCursorPosition(input) - 2] == "#" && tags.some(val => { return input.value[getCursorPosition(input) - 1] == val[0] })) {
+            setSelectedInput(input)
+            tagsDropDownRef.current.style.visibility = "visible"
+
+
+        } else {
+            tagsDropDownRef.current.style.visibility = "hidden"
+
+        }
+
+    }
+
+    const TagsDropDown = (props) => {
+
+        return (
+            <div className='tagsDropDown'>
+                <ul>
+                    {
+                        props.tags.map(tag => {
+                            return (
+                                //tofix
+                                props.selectedInput ? (
+                                    (props.selectedInput.value[getCursorPosition(props.selectedInput) - 1] == tag[0]) ? (<li onClick={(e) => {
+
+                                        props.selectedInput.value += tag
+                                        props.setSelectedInput(props.selectedInput)
+
+                                        props.tagsDropDownRef.current.style.visibility = "hidden"
+                                    }}>{tag}</li>) : ""
+                                ) : ""
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+        )
     }
 
     const wrapperRef = useCallback((wrapper) => {
@@ -89,11 +125,13 @@ const Post = () => {
     return (
         <div className='Post-container'>
 
-            <input type="text" placeholder='enter title' ref={title} onChange={tags}></input>
-            <br />
-            <input type="text" placeholder='enter description' ref={desc}></input>
+            <div className='tagsDropDownDiv' ref={tagsDropDownRef}>{dropDown}</div>
 
-            <div id='editor' ref={wrapperRef}> 
+            <input type="text" placeholder='enter title' ref={title} onChange={appendTags} ></input>
+            <br />
+            <input type="text" placeholder='enter description' ref={desc} onChange={appendTags} ></input>
+
+            <div id='editor' ref={wrapperRef}>
 
             </div>
         </div>
