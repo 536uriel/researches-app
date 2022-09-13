@@ -87,10 +87,10 @@ body{
 .tagsDropDownDiv{
     position: absolute;
     z-index: 1;
-    visibility: hidden;
 }
 
 .tagsDropDown ul{
     list-style: none;
     background: var(--accent);
+    
 }
