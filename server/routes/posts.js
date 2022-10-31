@@ -17,7 +17,7 @@ router.get('/my-researches', async (req, res) => {
 //todo: add checkAuthenticated
 router.post('/research', async (req, res) => {
 
-   const { title, desc, body, postId } = req.body
+   const { title, tags, desc, body, postId } = req.body
    try {
       console.log(title)
       if (postId && title && desc && body) {
@@ -27,7 +27,7 @@ router.post('/research', async (req, res) => {
             //have permittion to edit
          await Post.findByIdAndUpdate(postId, {
                $set: {
-                  title,desc,body
+                  title,tags,desc,body
                }
             })
            return res.send({res:"posted"})

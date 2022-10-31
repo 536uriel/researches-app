@@ -83,6 +83,9 @@ const Posts = () => {
                       <div className='post-container'>
 
                         <div className='title'> {post.title} </div>
+                        <ul> {post.tags ? post.tags.map(tag => {
+                          return <li>#{tag}</li>
+                        }) : ""} </ul>
                         <div className='desc'> {post.desc} </div>
                         <div className='posts-ql-wrapper' id={index} ref={research} ></div>
                         <button onClick={() => {

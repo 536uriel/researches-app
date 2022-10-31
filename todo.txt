@@ -1,0 +1,1 @@
+1.make an option to post tags and diplay them.

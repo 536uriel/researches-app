@@ -5,10 +5,12 @@ import { useRef, useCallback } from 'react';
 const EditPost = (props) => {
 
     const title = useRef()
+    const tags = useRef()
     const desc = useRef()
 
     useEffect(()=>{
         title.current.value = props.post.title
+        tags.current.value = props.post.tags.toString()
         desc.current.value = props.post.desc
     },[])
 
@@ -42,7 +44,7 @@ const EditPost = (props) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    title: title.current.value, desc: desc.current.value, body:content,
+                    title: title.current.value, tags:tags.current.value.replace(/\s\s+|,/g, ' ').split(' '), desc: desc.current.value, body:content,
                     postId:props.post._id
                 })
             }).then(res => res.json()).then((data) => {
@@ -61,6 +63,8 @@ const EditPost = (props) => {
     return (
         <div>
             <input type="text" placeholder='enter title' ref={title} />
+            <br />
+            <input type="text" placeholder='enter tags' ref={tags} />
             <br />
             <input type="text" placeholder="enter description" ref={desc} />
             <br />

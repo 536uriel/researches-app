@@ -5,6 +5,7 @@ const schema = new Schema({
         type:String,
         required:true
     },
+    tags:[String],
     desc:String,
     body:{
         type:Object,
