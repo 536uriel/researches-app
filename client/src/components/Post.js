@@ -1,37 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Quill from 'quill'
 import TagsDropDown from './TagsDropDown'
+import TagsDropDownDiv from './TagsDropDownDiv'
 
 const Post = () => {
 
     const title = useRef()
     const desc = useRef()
-    const choosenTags = useRef()
-    const tagsDropDownRef = useRef()
-    const [dropDown, setDropDown] = useState(null)
-    const [tags, setTags] = useState(['js', 'react', 'nodejs'])
-    const [selectedInput, setSelectedInput] = useState(null)
-
-
-    function getOffset(el) {
-        const rect = el.getBoundingClientRect();
-        return {
-            left: rect.left + window.scrollX,
-            top: rect.top + window.scrollY
-        };
-    }
-
-
-    function appendTags(e) {
-        const input = e.target
-        tagsDropDownRef.current.style.left = getOffset(input).left + "px"
-        tagsDropDownRef.current.style.top = getOffset(input).top + "px"
-        setSelectedInput(input)
-
-        setDropDown((<TagsDropDown setDropDown={setDropDown} setSelectedInput={setSelectedInput}
-            selectedInput={selectedInput} tags={tags} />))
-
-    }
+    const tagsInput = useRef()
    
 
     const wrapperRef = useCallback((wrapper) => {
@@ -64,7 +40,7 @@ const Post = () => {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        title: title.current.value,tags:choosenTags.current.value.replace(/\s\s+|,/g, ' ').split(' '), desc: desc.current.value, body: content
+                        title: title.current.value,tags:tagsInput.current.value.replace(/\s\s+|,/g, ' ').split(' '), desc: desc.current.value, body: content
                     })
                 }).then(res => res.json()).then((data) => {
                     alert(data)
@@ -81,13 +57,12 @@ const Post = () => {
     return (
         <div className='Post-container'>
 
-            <div className='tagsDropDownDiv' ref={tagsDropDownRef}>{dropDown}</div>
 
             <input type="text" placeholder='enter title' ref={title} ></input>
             <br />
             <input type="text" placeholder='enter description' ref={desc} ></input>
             <br />
-            <input type="text" placeholder='enter tags' ref={choosenTags} onChange={appendTags} ></input>
+            <TagsDropDownDiv tagsInput={tagsInput}/>
             <br />
             <div id='editor' ref={wrapperRef}>
 

@@ -59,7 +59,6 @@ const TagsDropDown =  (props) => {
                                 (checkSubStr(props.selectedInput.value, tag)) ? (<li onClick={(e) => {
 
                                     props.selectedInput.value = setSubStr(props.selectedInput.value, tag)
-                                    props.setSelectedInput(props.selectedInput)
 
                                     props.setDropDown((""))
                                 }}>{tag}</li>) : ""

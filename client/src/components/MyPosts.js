@@ -51,8 +51,8 @@ const MyPosts = () => {
                                 edit[index] == false ? (
                                     <div>
                                         <div> {post.title} </div>
-                                        <ul> {post.tags? post.tags.map(tag=>{
-                                            return <li>#{tag}</li>
+                                        <ul> {(post.tags.length > 0 && post.tags[0] != '')? post.tags.map(tag=>{
+                                            return (<li>#{tag}</li>)
                                         }) :""} </ul>
                                         <div> {post.desc} </div>
                                         <div id={index} ref={research} ></div>

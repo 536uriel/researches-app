@@ -1,1 +1,1 @@
-1.make an option to post tags and diplay them.
+1. implement remove post api

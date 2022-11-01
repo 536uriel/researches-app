@@ -40,7 +40,7 @@ router.post('/research', async (req, res) => {
          if (title && desc && body) {
             const post = new Post({
                //todo: need to change to req.user._id
-               title, desc, body, userId: "62fca5bb7f62e8e08d4d8bd5"
+               title,tags, desc, body, userId: "62fca5bb7f62e8e08d4d8bd5"
             })
 
             await post.save()
