@@ -25,37 +25,60 @@ router.post('/research', async (req, res) => {
          //todo: need to change to req.user._id
          if (post.userId == "62fca5bb7f62e8e08d4d8bd5") {
             //have permittion to edit
-         await Post.findByIdAndUpdate(postId, {
+            await Post.findByIdAndUpdate(postId, {
                $set: {
-                  title,tags,desc,body
+                  title, tags, desc, body
                }
             })
-           return res.send({res:"posted"})
-     
+            return res.send({ res: "posted" })
+
          }
 
-         res.send({res:"you dont have permition to post"})
+         res.send({ res: "you dont have permition to post" })
 
-      }  else {
+      } else {
          if (title && desc && body) {
             const post = new Post({
                //todo: need to change to req.user._id
-               title,tags, desc, body, userId: "62fca5bb7f62e8e08d4d8bd5"
+               title, tags, desc, body, userId: "62fca5bb7f62e8e08d4d8bd5"
             })
 
             await post.save()
             return res.send({ res: "created" })
          } else {
-            res.send({res:"bad request"})
+            res.send({ res: "bad request" })
          }
       }
 
 
-   }catch (error) {
+   } catch (error) {
       console.log(error)
       res.sendStatus(500)
    }
 })
+
+router.delete('/research', async (req, res) => {
+   const { postId } = req.body
+   try {
+      const post = await Post.findOne({ _id: postId })
+      //todo: need to change to req.user._id
+      if (post.userId == "62fca5bb7f62e8e08d4d8bd5") {
+         //have permittion to delete
+         await Post.findByIdAndRemove(postId)
+         return res.send({ res: "deleted" })
+
+      }
+
+      res.send({ res: "you dont have permition to delete" })
+
+
+
+   } catch (error) {
+      console.log(error)
+      res.sendStatus(500)
+   }
+})
+
 
 
 module.exports = router;

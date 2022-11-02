@@ -9,6 +9,7 @@ const MyPosts = () => {
     const [posts, setPosts] = useState(null)
     const [edit, setEdit] = useState([false])
     const [refresh,setRefresh] = useState(null)
+    
 
 
     useEffect(() => {
@@ -40,6 +41,23 @@ const MyPosts = () => {
 
     })
 
+    function deletePost(postId){
+        fetch('http://localhost:1000/research', {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                postId
+            })}).then(res => {
+                alert("post deleted")
+                setRefresh(postId)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+
     return (
         <div className='MyPosts-container'>
             {
@@ -59,7 +77,8 @@ const MyPosts = () => {
                                         <button onClick={()=>{
                                             edit[index] = true;
                                             setEdit([...edit])
-                                            }}>edit post</button> 
+                                            }}>edit post</button>
+                                            <button onClick={()=>{deletePost(post._id)}}>delete</button>
                                     </div>
                                 ) : (<EditPost setRefresh={(val)=>setRefresh(val)} post={post} edit={edit} 
                                     setEdit={setEdit} index={index} />)
