@@ -68,7 +68,7 @@ const Posts = () => {
 
   return (
     <div className='posts-container'>
-      <input type="text" placeholder='search a post' onChange={(e) => setSearchParam(e.target.value)} />
+      <input className='search-input' type="text" placeholder='search a post' onChange={(e) => setSearchParam(e.target.value)} />
       {
         posts ? filterItems(posts).map((post, index) => {
           return (
@@ -82,11 +82,11 @@ const Posts = () => {
 
                       <div className='post-container'>
 
-                        <div className='title'> {post.title} </div>
+                        <h2 className='title'> {post.title} </h2>
                         <ul> {post.tags ? post.tags.map(tag => {
                           return <li>#{tag}</li>
                         }) : ""} </ul>
-                        <div className='desc'> {post.desc} </div>
+                        <h3 className='desc'> {post.desc} </h3>
                         <div className='posts-ql-wrapper' id={index} ref={research} ></div>
                         <button onClick={() => {
                           let arr = viewIntro

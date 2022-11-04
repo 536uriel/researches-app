@@ -10,7 +10,9 @@
 }
 
 body{
-    margin:0
+    margin:0;
+    background: var(--dominate);
+
 }
 
 .App{
@@ -39,18 +41,55 @@ body{
     min-height: 95%;
 }
 
-.Post-container{
+.make-post-container{
     position: relative;
 }
 
+.post-container{
+    margin: auto;
+    width: 70%;
+    background-color: white;
+}
+
+.post-container h2,h3{
+    text-align: center;
+    color: var(--accent);
+}
+
+.post-container button{
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    margin-top: 1em;
+    background-color: var(--accent);
+    color: var(--dominate);
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.post-container button:hover{
+background-color: var(--complementary);
+}
+
 .posts-container{
-    background: var(--dominate);
     min-height: 95%;
+}
+
+.posts-ql-wrapper{
+margin: 20px;
 }
 
 .posts-ql-wrapper .ql-container .ql-editor{
     max-height:4em;
+    background: var(--dominate);
 }
+
+.posts-ql-wrapper .ql-container.ql-snow{
+    border-style: none;
+}
+
 
 .read-post-container h1{
     text-align: center;
@@ -93,4 +132,19 @@ body{
     list-style: none;
     background: var(--accent);
     
+}
+
+input[type="text"]{
+    width: 300px;
+    height: 30px;
+}
+
+ .search-input{
+    display: block;
+    margin:auto;
+    margin-top: 10px;
+}
+
+.search-input:focus{
+    border:3px solid var(--accent);
 }

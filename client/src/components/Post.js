@@ -55,7 +55,7 @@ const Post = () => {
     }, [])
 
     return (
-        <div className='Post-container'>
+        <div className='make-post-container'>
 
 
             <input type="text" placeholder='enter title' ref={title} ></input>
