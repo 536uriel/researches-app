@@ -25,6 +25,7 @@ const EditPost = (props) => {
         const editor = document.createElement("div")
         const button = document.createElement("button")
         button.innerHTML = "save changes"
+        button.setAttribute("class","btn")
         wrapper.append(editor)
         wrapper.append(button)
 
@@ -71,7 +72,7 @@ const EditPost = (props) => {
             <br />
             <div ref={wrapperRef}></div>
             <br />
-            <button onClick={() => {
+            <button className='btn' onClick={() => {
                 props.edit[props.index] = false;
                 props.setEdit([...props.edit])
             }}>cancel</button>

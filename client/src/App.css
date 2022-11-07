@@ -1,21 +1,21 @@
-:root{
-    --dominate:#f5f5f5;
-    --complementary:#474554;
-    --accent:#ACA7CB;
+:root {
+    --dominate: #f5f5f5;
+    --complementary: #474554;
+    --accent: #ACA7CB;
 }
 
 
-::before ::after{
+::before ::after {
     box-sizing: border-box;
 }
 
-body{
-    margin:0;
+body {
+    margin: 0;
     background: var(--dominate);
 
 }
 
-.App{
+.App {
     height: 100vh;
 }
 
@@ -29,34 +29,35 @@ body{
     min-height: 4%;
 }
 
-.nav a{
+.nav a {
     text-decoration: none;
     color: var(--accent);
     height: max-content;
 }
 
 
-.home-container{
+.home-container {
     background: var(--dominate);
     min-height: 95%;
 }
 
-.make-post-container{
+.make-post-container {
     position: relative;
 }
 
-.post-container{
+.post-container {
     margin: auto;
     width: 70%;
     background-color: white;
 }
 
-.post-container h2,h3{
+.post-container h2,
+h3 {
     text-align: center;
     color: var(--accent);
 }
 
-.post-container button{
+.post-container button {
     margin-left: 20px;
     margin-bottom: 10px;
 
@@ -69,47 +70,47 @@ body{
     padding: 10px;
 }
 
-.post-container button:hover{
-background-color: var(--complementary);
+.post-container button:hover {
+    background-color: var(--complementary);
 }
 
-.posts-container{
+.posts-container {
     min-height: 95%;
 }
 
-.posts-ql-wrapper{
-margin: 20px;
+.posts-ql-wrapper {
+    margin: 20px;
 }
 
-.posts-ql-wrapper .ql-container .ql-editor{
-    max-height:4em;
+.posts-ql-wrapper .ql-container .ql-editor {
+    max-height: 4em;
     background: var(--dominate);
 }
 
-.posts-ql-wrapper .ql-container.ql-snow{
+.posts-ql-wrapper .ql-container.ql-snow {
     border-style: none;
 }
 
 
-.read-post-container h1{
+.read-post-container h1 {
     text-align: center;
-    color:var(--accent)
+    color: var(--accent)
 }
 
-.read-post-content .ql-container.ql-snow{
-   
+.read-post-content .ql-container.ql-snow {
+
     border-style: none;
     background-color: var(--complementary);
     background-color: #ffffff;
     border-radius: 5px;
 }
 
-.read-post-container > div{
+.read-post-container>div {
     width: 70%;
     margin: 0 auto;
 }
 
-.read-post-container button{
+.btn {
     font-size: 20px;
     margin-top: 1em;
     background-color: var(--accent);
@@ -119,32 +120,42 @@ margin: 20px;
     padding: 10px;
 }
 
-.read-post-container button:hover{
+.btn:hover {
     background-color: var(--complementary);
 }
 
-.tagsDropDownDiv{
+.tags {
+    list-style: none;
+    font-weight: bold;
+}
+
+.tags li{
+    display: inline;
+    margin-left: 10px;
+}
+
+.tagsDropDownDiv {
     position: absolute;
     z-index: 1;
 }
 
-.tagsDropDown ul{
+.tagsDropDown ul {
     list-style: none;
     background: var(--accent);
-    
+
 }
 
-input[type="text"]{
+input[type="text"] {
     width: 300px;
     height: 30px;
 }
 
- .search-input{
+.search-input {
     display: block;
-    margin:auto;
+    margin: auto;
     margin-top: 10px;
 }
 
-.search-input:focus{
-    border:3px solid var(--accent);
+.search-input:focus {
+    border: 3px solid var(--accent);
 }

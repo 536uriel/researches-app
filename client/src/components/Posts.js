@@ -83,12 +83,16 @@ const Posts = () => {
                       <div className='post-container'>
 
                         <h2 className='title'> {post.title} </h2>
-                        <ul> {post.tags ? post.tags.map(tag => {
+
+                        <ul className='tags'> {post.tags ? post.tags.map(tag => {
                           return <li>#{tag}</li>
                         }) : ""} </ul>
+                      
                         <h3 className='desc'> {post.desc} </h3>
+
                         <div className='posts-ql-wrapper' id={index} ref={research} ></div>
-                        <button onClick={() => {
+                    
+                        <button className='btn' onClick={() => {
                           let arr = viewIntro
 
                           arr[index] = false

@@ -30,7 +30,12 @@ const MyPosts = () => {
     const research = useCallback((wrapper) => {
         if (!wrapper) return;
 
-        const quill = new Quill(wrapper, {
+        wrapper.innerHTML = ""
+
+        const editor = document.createElement("div")
+        wrapper.append(editor)
+
+        const quill = new Quill(editor, {
             modules: {
                 toolbar: ''
             },
@@ -67,14 +72,16 @@ const MyPosts = () => {
 
                             {
                                 edit[index] == false ? (
-                                    <div>
-                                        <div> {post.title} </div>
-                                        <ul> {(post.tags.length > 0 && post.tags[0] != '')? post.tags.map(tag=>{
+                                    <div className='post-container'>
+                                        <h2> {post.title} </h2>
+                                        <ul className='tags'> {(post.tags.length > 0 && post.tags[0] != '')? post.tags.map(tag=>{
                                             return (<li>#{tag}</li>)
                                         }) :""} </ul>
-                                        <div> {post.desc} </div>
-                                        <div id={index} ref={research} ></div>
-                                        <button onClick={()=>{
+                                        <h3> {post.desc} </h3>
+                                        
+                                        <div className='posts-ql-wrapper' id={index} ref={research} ></div>
+                                       
+                                        <button className='btn' onClick={()=>{
                                             edit[index] = true;
                                             setEdit([...edit])
                                             }}>edit post</button>
